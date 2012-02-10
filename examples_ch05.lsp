@@ -1,3 +1,4 @@
+#!/usr/bin/env clisp
 (defun do-length (lst)
     (do 
         ((i lst (cdr i))

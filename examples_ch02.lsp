@@ -1,3 +1,4 @@
+#!/usr/bin/env clisp
 (setq x '(a b))
 (setq y '(c d))
 

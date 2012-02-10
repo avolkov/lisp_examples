@@ -1,3 +1,4 @@
+#!/usr/bin/env clisp
 (defun oddgdm (x)
 ;determine if x is an odd number greater than a million
     (and (numberp x)(oddp x)(> x 1000000))

@@ -1,3 +1,4 @@
+#!/usr/bin/env clisp
 ; ex 1
 (defun power-of-two (val)
     (do
