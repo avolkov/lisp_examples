@@ -1,4 +1,3 @@
-#!/usr/bin/env clisp
 (defun radius(r) (* pi (* r r)))
 (defun interest (x) (* x (/ 0.1 12)))
 (defun square (x) (* x x))

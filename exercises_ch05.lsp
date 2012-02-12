@@ -1,5 +1,4 @@
-#!/usr/bin/env clisp
-; ex 1
+; ex 1: Compute power of two for a given value
 (defun power-of-two (val)
     (do
         ((cur val (1- cur)) (res 2 (* 2 res)))
@@ -13,7 +12,7 @@
 (print (power-of-two 10))
 (print (power-of-two 20))
 (print "------------")
-;ex 2
+;ex 2: remove all occurences of an element 'el' from a list
 (defun it-remove (el val)
     (reverse (do
         ((cur val (cdr cur)) (res nil (cond ((not (equal el (car cur))) (cons (car cur) res)))))
@@ -36,7 +35,8 @@
 (print (it-remove1 'a '(b c)))
 (print (it-remove1 'a '(a b c)))
 (print "------------")
-;ex 3
+;ex 3: look up value in the list of list
+;i.e. (it-assoc 'y '((a b) (c d) (e y))) --> (e, y)
 (defun it-assoc (el val)
     (do
         ((cur val (cdr cur)) (res nil (cond ((equal el (caar cur)) (append (car cur) res)))))
@@ -48,7 +48,7 @@
 (print (it-assoc 'y '((a b) (b c) (c d))))
 (print (it-assoc 'y '((a b) (b c) (c d)(y f))))
 (print "------------")
-;ex 4
+;ex 4: compute factorial
 (defun it-fact (num)
     (do
         ((cur num (1- cur)) (res 1 (* res cur)))
@@ -62,7 +62,7 @@
 (print (it-fact 10))
 (print (it-fact 100))
 (print "------------")
-;ex 5
+;ex 5: write a version of zip function in python
 (defun it-pairlis (l1 l2)
     (do
         ((cur (list l1 l2) (list (cdar cur) (cdadr cur))) (res nil (append res (list (list (caar cur)(caadr cur))) ) ))
@@ -74,3 +74,45 @@
 (print (it-pairlis '(a b c) '(1 2) ))
 (print (it-pairlis '(a b c) '(1 2 3 4) ))
 (print (it-pairlis '(a b c) '() ))
+(print "------------")
+;ex 6: find all perfect numbers in the range between these two numbers
+
+;define function that finds a perfect number for a given n
+
+(defun perf-n (n)
+;http://mathforum.org/dr.math/faq/faq.perfect.html
+    (* (expt 2 (1- n)) (1- (expt 2 n)))
+)
+(defun perf-range (nmin nmax)
+    (reverse 
+        (do
+            ((cur 0 (1+ cur)) (res nil (cond ( (>= (perf-n cur) nmin) (cons (perf-n cur) res)) )))
+            ((>= (perf-n cur) nmax) res)
+        )
+    )
+)
+(print (perf-range 1 2))
+(print (perf-range 1 100))
+(print (perf-range 1 1000))
+(print (perf-range 100 1000))
+(print "------------")
+
+;ex 7: Find an intersection of two lists
+(defun it-intersect (l1 l2)
+    (do
+        ((cur l1 (cdr cur)) (res '() (cond  ((member (car cur) (cdr cur)) res)
+                                            ((member (car cur) l2) (append res (list (car cur)))) 
+                                            (t res)
+                                     )
+                            )
+        )
+        ((null cur) res)
+    )
+)
+
+(print (it-intersect '() '(a c b d e)))
+(print (it-intersect '(a b) '(a)))
+(print (it-intersect '(a a) '(a a)))
+(print (it-intersect '(a b) '(a c b d e)))
+(print (it-intersect '(a a) '(a c b d e)))
+(print (it-intersect '(a) '(a c b d e)))

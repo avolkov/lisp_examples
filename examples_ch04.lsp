@@ -1,4 +1,3 @@
-#!/usr/bin/env clisp
 (defun car-atomp (x)
 ;conditionals
     (cond ((listp x) (atom (car x))))
